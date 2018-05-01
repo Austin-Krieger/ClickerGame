@@ -51,7 +51,7 @@ public class AchievementManager : MonoBehaviour {
             EarnAchievement("Press Space");
         }
 
-        if (mm.Current_Player_Cash >= 2147480000 || mm.Cash_Remaining >= 2147480000)
+        if (mm.Current_Player_Cash >= 2147483647)
         {
             EarnAchievement("Integer Overflow");
         }

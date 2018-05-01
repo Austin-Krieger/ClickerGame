@@ -19,6 +19,7 @@ public class UIButtons : MonoBehaviour {
     private ulong _upgrade_tier_visual = 1;
     public GameObject UpgradeButton;
     private bool _automate_checked;
+    private int _ball_upgrade_count = 1;
     #endregion
 
     #region Methods
@@ -34,7 +35,7 @@ public class UIButtons : MonoBehaviour {
 
     IEnumerator Automate()
     {
-        while (true)
+        while (_automate_checked == true)
         {
             yield return new WaitForSeconds(0);
             UpgradeCollectors();
@@ -54,11 +55,6 @@ public class UIButtons : MonoBehaviour {
 
     public void AddBall()
     {
-        if (GameObject.FindGameObjectsWithTag("Ball").Length >= 9)
-        {
-            GameObject.Find("AddBallBtn").SetActive(false);
-        }
-
         if (GameObject.FindGameObjectsWithTag("Ball").Length < 10)
         {
             if (mm.Current_Player_Cash >= 1000)
@@ -66,27 +62,42 @@ public class UIButtons : MonoBehaviour {
                 mm.Current_Player_Cash -= 1000;
                 GameObject ball = (GameObject)Instantiate(ballPrefab);
 
+                Calculate_collisions_remaining(0);
+
                 Update_player_cash();
 
                 this.gameObject.GetComponent<AchievementManager>().EarnAchievement("Four!");
             }
+        } else
+        {
+            GameObject.Find("AddBallBtn").SetActive(false);
         }
     }
 
     public void UpgradeBall()
     {
-        if (mm.Current_Player_Cash >= _upgrade_cost)
+        if (_ball_upgrade_count < 20)
         {
-            mm.Current_Player_Cash -= _upgrade_cost;
-
-            Update_player_cash();
-
-            Calculate_upgrade_cost();
-
-            for (int i = 0; i < allcollectors.Length; i++)
+            if (mm.Current_Player_Cash >= _upgrade_cost)
             {
-                allcollectors[i].gameObject.GetComponent<Collector>().Ball_upgrade_level += 1;
+                mm.Current_Player_Cash -= _upgrade_cost;
+
+                Calculate_collisions_remaining(0);
+
+                Update_player_cash();
+
+                Calculate_upgrade_cost();
+
+                for (int i = 0; i < allcollectors.Length; i++)
+                {
+                    allcollectors[i].gameObject.GetComponent<Collector>().Ball_upgrade_level += 1;
+                }
+
+                _ball_upgrade_count++;
             }
+        } else
+        {
+            GameObject.Find("UpgradeBallBtn").SetActive(false);
         }
     }
 
@@ -111,7 +122,7 @@ public class UIButtons : MonoBehaviour {
                 UpgradeButton.GetComponentInChildren<Text>().text = "Tier " + _upgrade_tier_visual;
             }
 
-            mm.Collision_value += 20;
+            mm.Collision_value += 20000;
             mm.Current_Player_Cash -= _upgrade_cost;
 
             Calculate_collisions_remaining(0);
@@ -126,11 +137,12 @@ public class UIButtons : MonoBehaviour {
 
     public void Automate_Upgrades()
     {
-        if (!_automate_checked == true)
+        if (_automate_checked == false)
         {
             _automate_checked = true;
             StartCoroutine("Automate");
-        } else
+        }
+        else
         {
             _automate_checked = false;
         }
