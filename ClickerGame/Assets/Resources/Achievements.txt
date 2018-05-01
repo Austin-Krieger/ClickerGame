@@ -1,0 +1,5 @@
+AchievementsCanvas; Press Space; You pressed Spacebar
+AchievementsCanvas; Four!; New Ball Added
+AchievementsCanvas; Upgrayedd; I can't believe you like money too.
+AchievementsCanvas; Integer Overflow; You reached the limits of a 32-bit integer.
+AchievementsCanvas; Donesies; You earned every achievement.

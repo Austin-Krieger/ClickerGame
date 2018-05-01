@@ -1,0 +1,252 @@
+<Project>
+  <Name>ClickerGame</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Classes</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Txt2Achievement</Name>
+        <Access>Public</Access>
+        <Location left="718" top="47" />
+        <Size width="192" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">AchievementManager A</Member>
+        <Member type="Field">private string lines</Member>
+        <Member type="Field">private static string[] category</Member>
+        <Member type="Field">private static string[] title</Member>
+        <Member type="Field">private static string[] description</Member>
+        <Member type="Field">private static int achievement_Count = 5</Member>
+        <Member type="Field">private Achievement myAvhievement</Member>
+        <Member type="Method">private static void ReadFile()</Member>
+        <Member type="Method">private static void CreateAchievement()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Achievement</Name>
+        <Access>Public</Access>
+        <Location left="54" top="47" />
+        <Size width="188" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private string _title</Member>
+        <Member type="Field">private GameObject _achievementRef</Member>
+        <Member type="Field">private bool _unlocked</Member>
+        <Member type="Field">private string _description</Member>
+        <Member type="Property">public string Title { get; set; }</Member>
+        <Member type="Property">public string Description { get; set; }</Member>
+        <Member type="Property">public bool Unlocked { get; set; }</Member>
+        <Member type="Method">public void Achievement()</Member>
+        <Member type="Method">public bool EarnAchievement()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AchievementManager</Name>
+        <Access>Public</Access>
+        <Location left="754" top="354" />
+        <Size width="248" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">MoneyManager mm</Member>
+        <Member type="Field">UIButtons b</Member>
+        <Member type="Field">public GameObject visualAchievement</Member>
+        <Member type="Field">public GameObject achievementPrefab</Member>
+        <Member type="Field">public static AchievementManager instance</Member>
+        <Member type="Property">public static AchievementManager instance { get; set; }</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public void Update()</Member>
+        <Member type="Method">public void EarnAchievement()</Member>
+        <Member type="Method">public IEnumerator HideAchievement()</Member>
+        <Member type="Method">public IEnumerator Process()</Member>
+        <Member type="Method">public void SetAchievementInfo()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Collector</Name>
+        <Access>Public</Access>
+        <Location left="10" top="354" />
+        <Size width="243" height="264" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">MoneyManager mm</Member>
+        <Member type="Field">private GameObject _collectorRef</Member>
+        <Member type="Field">private ulong _collisions_remaining</Member>
+        <Member type="Field">private ulong _upgrade_level</Member>
+        <Member type="Field">public ulong Collisions</Member>
+        <Member type="Property">public ulong Collisions_Remaining { get; set; }</Member>
+        <Member type="Property">public ulong Ball_upgrade_level { get; set; }</Member>
+        <Member type="Method">private void Start()</Member>
+        <Member type="Method">public void Collector()</Member>
+        <Member type="Method">private void OnCollisionEnter2D()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CollectorManager</Name>
+        <Access>Public</Access>
+        <Location left="278" top="47" />
+        <Size width="182" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">MoneyManager mm</Member>
+        <Member type="Field">public GameObject[] collectors</Member>
+        <Member type="Field">public GameObject[] collectorTexts</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">private void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MoneyManager</Name>
+        <Access>Public</Access>
+        <Location left="278" top="354" />
+        <Size width="215" height="230" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public Text Player_Cash = 1000</Member>
+        <Member type="Field">private ulong _current_player_cash</Member>
+        <Member type="Field">public Text Cash_Remaining_Txt = 1500</Member>
+        <Member type="Field">private ulong _cash_remaining</Member>
+        <Member type="Field">public ulong Collision_value = 20</Member>
+        <Member type="Property">public ulong Current_Player_Cash { get; set; }</Member>
+        <Member type="Property">public ulong Cash_Remaining { get; set; }</Member>
+        <Member type="Method">public void Start()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>BallController</Name>
+        <Access>Public</Access>
+        <Location left="496" top="47" />
+        <Size width="182" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Rigidbody2D rbody</Member>
+        <Member type="Field">private int constantSpeed</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public void LateUpdate()</Member>
+        <Member type="Method">public void FixedUpdate()</Member>
+        <Member type="Method">IEnumerator ChangeColor()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>UIButtons</Name>
+        <Access>Public</Access>
+        <Location left="517" top="354" />
+        <Size width="215" height="417" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">MoneyManager mm</Member>
+        <Member type="Field">CollectorManager cm</Member>
+        <Member type="Field">public GameObject ballPrefab</Member>
+        <Member type="Field">private ulong Collision_Count</Member>
+        <Member type="Field">private ulong _upgrade_cost</Member>
+        <Member type="Field">public GameObject UpgradeCostTxt</Member>
+        <Member type="Field">GameObject[] allcollectors</Member>
+        <Member type="Field">private GameObject Cash_remaining_Txt</Member>
+        <Member type="Field">private ulong _upgrade_tier = 5</Member>
+        <Member type="Field">private ulong _upgrade_tier_visual = 0</Member>
+        <Member type="Field">public GameObject UpgradeButton</Member>
+        <Member type="Method">public void Start()</Member>
+        <Member type="Method">public void AddBall()</Member>
+        <Member type="Method">public void UpgradeCollectors()</Member>
+        <Member type="Method">IEnumerator IncCounters()</Member>
+        <Member type="Method">private void Calculate_collisions_remaining()</Member>
+        <Member type="Method">private void Update_player_cash()</Member>
+        <Member type="Method">private void Calculate_upgrade_cost()</Member>
+        <Member type="Method">IEnumerator Automate()</Member>
+        <Member type="Method">public void Automate_Upgrades()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MonoBehaviour</Name>
+        <Access>Public</Access>
+        <Location left="1041" top="283" />
+        <Size width="162" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="3" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>92</X>
+          <Y>314</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="4" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>354</X>
+          <Y>297</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1016</X>
+          <Y>314</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="5" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>354</X>
+          <Y>325</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1016</X>
+          <Y>314</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="6" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>577</X>
+          <Y>291</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1016</X>
+          <Y>314</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="7" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>577</X>
+          <Y>329</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1016</X>
+          <Y>314</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="8">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>935</X>
+          <Y>247</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1115</X>
+          <Y>253</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="2" second="8">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1117</X>
+          <Y>385</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
