@@ -1,2 +1,2 @@
 # ClickerGame
-Idle Game for Object Oriented Design
+Idle Game developed for Object Oriented Design final.
